@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Probability Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Diabetes Probability Predictor</h1>
+        <form action="http://localhost:5000/predict" method="post">
+            <label for="gender">Gender:</label>
+            <select name="gender" id="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select><br><br>
+
+            <label for="age">Age:</label>
+            <input type="number" name="age" id="age" required><br><br>
+
+            <label for="hypertension">Hypertension:</label>
+            <input type="checkbox" name="hypertension" id="hypertension" value="1"><br><br>
+
+            <label for="heart_disease">Heart Disease:</label>
+            <input type="checkbox" name="heart_disease" id="heart_disease" value="1"><br><br>
+
+            <label for="smoking_history">Smoking History:</label>
+            <select name="smoking_history" id="smoking_history">
+                <option value="No info">No info</option>
+                <option value="Never">Never</option>
+                <option value="Currently">Currently</option>
+            </select><br><br>
+
+            <label for="bmi">BMI:</label>
+            <input type="number" step="0.01" name="bmi" id="bmi" required><br><br>
+
+            <label for="HbA1c_level">HbA1c Level:</label>
+            <input type="number" step="0.01" name="HbA1c_level" id="HbA1c_level" required><br><br>
+
+            <label for="blood_glucose_level">Blood Glucose Level:</label>
+            <input type="number" step="0.01" name="blood_glucose_level" id="blood_glucose_level" required><br><br>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if result %}
+            <h3>Diabetes: {{ result }}</h3>
+        {% endif %}
+    </div>
+</body>
+</html>
