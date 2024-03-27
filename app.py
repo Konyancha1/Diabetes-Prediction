@@ -40,9 +40,9 @@ def predict():
     probability = model.predict_proba(input_data)[0][1] * 100
 
     if prediction == 0:
-        result_text = "Likely to not have Diabetes"
+        result_text = "Likely Absent"
     else:
-        result_text = "Likelt to have Diabetes"
+        result_text = "Likely Present"
 
     return render_template('index.html', result=result_text, probability=round(probability, 2))
 
