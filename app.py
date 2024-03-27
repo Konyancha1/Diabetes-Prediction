@@ -1,15 +1,11 @@
 from flask import Flask, render_template, request
 import numpy as np
 import joblib
-import pandas as pd
 
 app = Flask(__name__)
 
 # Load the pre-trained model
 model = joblib.load('diabetes_model.pkl')
-
-# Load the pre-trained scaler
-scaler = joblib.load('scaler.pkl')
 
 @app.route('/')
 def index():
@@ -44,9 +40,9 @@ def predict():
     probability = model.predict_proba(input_data)[0][1] * 100
 
     if prediction == 0:
-        result_text = "No Diabetes"
+        result_text = "Likely to not have Diabetes"
     else:
-        result_text = "Diabetes"
+        result_text = "Likelt to have Diabetes"
 
     return render_template('index.html', result=result_text, probability=round(probability, 2))
 
