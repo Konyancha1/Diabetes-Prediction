@@ -9,15 +9,16 @@
 <body>
     <div class="container">
         <h1>Diabetes Probability Predictor</h1>
-        <form action="http://localhost:5000/predict" method="post">
+        <form action="/predict" method="post">
             <label for="gender">Gender:</label>
-            <select name="gender" id="gender">
+            <select name="gender" id="gender" required>
+                <option value="" disabled selected>Select gender</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
             </select><br><br>
 
             <label for="age">Age:</label>
-            <input type="number" name="age" id="age" required><br><br>
+            <input type="number" name="age" id="age" required min="0" max="99"><br><br>
 
             <label for="hypertension">Hypertension:</label>
             <input type="checkbox" name="hypertension" id="hypertension" value="1"><br><br>
@@ -26,7 +27,8 @@
             <input type="checkbox" name="heart_disease" id="heart_disease" value="1"><br><br>
 
             <label for="smoking_history">Smoking History:</label>
-            <select name="smoking_history" id="smoking_history">
+            <select name="smoking_history" id="smoking_history" required>
+                <option value="" disabled selected>Select smoking history</option>
                 <option value="No info">No info</option>
                 <option value="Never">Never</option>
                 <option value="Currently">Currently</option>
@@ -46,6 +48,10 @@
 
         {% if result %}
             <h3>Diabetes: {{ result }}</h3>
+        {% endif %}
+
+        {% if error %}
+            <h3>Error: {{ error }}</h3>
         {% endif %}
     </div>
 </body>
